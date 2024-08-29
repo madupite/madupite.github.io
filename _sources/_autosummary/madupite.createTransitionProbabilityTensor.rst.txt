@@ -1,0 +1,6 @@
+﻿madupite.createTransitionProbabilityTensor
+==========================================
+
+.. currentmodule:: madupite
+
+.. autofunction:: createTransitionProbabilityTensor

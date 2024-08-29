@@ -1,0 +1,23 @@
+﻿madupite.MatrixCategory
+=======================
+
+.. currentmodule:: madupite
+
+.. autoclass:: MatrixCategory
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~MatrixCategory.Dynamics
+      ~MatrixCategory.Cost
+   
+   

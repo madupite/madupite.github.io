@@ -1,0 +1,6 @@
+﻿madupite.createStageCostMatrix
+==============================
+
+.. currentmodule:: madupite
+
+.. autofunction:: createStageCostMatrix

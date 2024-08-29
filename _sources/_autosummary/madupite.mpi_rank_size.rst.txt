@@ -1,0 +1,6 @@
+﻿madupite.mpi\_rank\_size
+========================
+
+.. currentmodule:: madupite
+
+.. autofunction:: mpi_rank_size

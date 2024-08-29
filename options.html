@@ -1,0 +1,668 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Madupite Options &#8212; madupite</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=8a448e45"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'options';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Benchmarks" href="benchmarks.html" />
+    <link rel="prev" title="Examples" href="examples.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/madupite_logo.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/madupite_logo.png" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">madupite</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorial.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Options
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="benchmarks.html">
+    Benchmarks
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="apiref.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorial.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Options
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="benchmarks.html">
+    Benchmarks
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="apiref.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Madupite Options</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="madupite-options">
+<h1>Madupite Options<a class="headerlink" href="#madupite-options" title="Link to this heading">#</a></h1>
+<p>Madupite options are specified using <code class="docutils literal notranslate"><span class="pre">MDP.setOption()</span></code>. This function accepts either two strings, or a single string for boolean options. Numeric values should be passed as strings, e.g., <code class="docutils literal notranslate"><span class="pre">&quot;20&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;0.1&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;1e-10&quot;</span></code>. Madupite options are built on top of PETSc options, allowing any PETSc option to be passed as well.</p>
+<section id="required-options">
+<h2>Required Options<a class="headerlink" href="#required-options" title="Link to this heading">#</a></h2>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-mode">
+<span class="sig-name descname"><span class="pre">-mode</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;STRING&gt;</span></span><a class="headerlink" href="#cmdoption-mode" title="Link to this definition">#</a></dt>
+<dd><p>Specifies the optimization mode for the Markov Decision Process.</p>
+<p>Accepted values: <code class="docutils literal notranslate"><span class="pre">&quot;MAXREWARD&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;MINCOST&quot;</span></code></p>
+<p>This option determines whether the algorithm will maximize rewards or minimize costs.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-discount_factor">
+<span class="sig-name descname"><span class="pre">-discount_factor</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;DOUBLE&gt;</span></span><a class="headerlink" href="#cmdoption-discount_factor" title="Link to this definition">#</a></dt>
+<dd><p>Sets the discount factor for future rewards or costs.</p>
+<p>Value range: <span class="math notranslate nohighlight">\((0, 1)\)</span></p>
+<p>The discount factor determines the present value of future rewards. A value closer to 1 gives more weight to future rewards, while a value closer to 0 emphasizes immediate rewards.</p>
+</dd></dl>
+
+</section>
+<section id="optional-options">
+<h2>Optional Options<a class="headerlink" href="#optional-options" title="Link to this heading">#</a></h2>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-max_iter_pi">
+<span class="sig-name descname"><span class="pre">-max_iter_pi</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;INT&gt;</span></span><a class="headerlink" href="#cmdoption-max_iter_pi" title="Link to this definition">#</a></dt>
+<dd><p>Specifies the maximum number of iterations for the inexact policy iteration algorithm.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">1000</span></code></p>
+<p>The algorithm will terminate after this many iterations, even if convergence has not been achieved. Must be a positive integer.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-max_iter_ksp">
+<span class="sig-name descname"><span class="pre">-max_iter_ksp</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;INT&gt;</span></span><a class="headerlink" href="#cmdoption-max_iter_ksp" title="Link to this definition">#</a></dt>
+<dd><p>Sets the maximum number of iterations for the Krylov subspace method.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">1000</span></code></p>
+<p>This option limits the iterations in the approximate policy evaluation step. The method will terminate after this many iterations, even without convergence. Must be a positive integer.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-atol_pi">
+<span class="sig-name descname"><span class="pre">-atol_pi</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;DOUBLE&gt;</span></span><a class="headerlink" href="#cmdoption-atol_pi" title="Link to this definition">#</a></dt>
+<dd><p>Defines the absolute tolerance for the inexact policy iteration algorithm.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">1e-8</span></code></p>
+<p>The algorithm terminates if the difference between the Bellman residual infinity norm is smaller than this value. Must be a positive double.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-alpha">
+<span class="sig-name descname"><span class="pre">-alpha</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;DOUBLE&gt;</span></span><a class="headerlink" href="#cmdoption-alpha" title="Link to this definition">#</a></dt>
+<dd><p>Sets the forcing sequence parameter for the approximate policy evaluation step.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">1e-4</span></code></p>
+<p>This parameter influences the accuracy of the policy evaluation step. Must be a positive double.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-file_stats">
+<span class="sig-name descname"><span class="pre">-file_stats</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;STRING&gt;</span></span><a class="headerlink" href="#cmdoption-file_stats" title="Link to this definition">#</a></dt>
+<dd><p>Specifies a file to write convergence and runtime information.</p>
+<p>This option enables writing detailed statistics about the algorithm’s performance, useful for plotting and benchmarking.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-file_policy">
+<span class="sig-name descname"><span class="pre">-file_policy</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;STRING&gt;</span></span><a class="headerlink" href="#cmdoption-file_policy" title="Link to this definition">#</a></dt>
+<dd><p>Designates a file to write the optimal policy.</p>
+<p>The optimal policy will be written in ASCII format, with entries separated by line breaks.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-file_cost">
+<span class="sig-name descname"><span class="pre">-file_cost</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;STRING&gt;</span></span><a class="headerlink" href="#cmdoption-file_cost" title="Link to this definition">#</a></dt>
+<dd><p>Specifies a file to write the optimal cost-to-go (or reward-to-go) function.</p>
+<p>The function values will be written in ASCII format, with entries separated by line breaks.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-export_optimal_transition_probabilities">
+<span class="sig-name descname"><span class="pre">-export_optimal_transition_probabilities</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;STRING&gt;</span></span><a class="headerlink" href="#cmdoption-export_optimal_transition_probabilities" title="Link to this definition">#</a></dt>
+<dd><p>Defines a file to write the optimal transition probabilities matrix.</p>
+<p>Exports the <span class="math notranslate nohighlight">\(n \times n\)</span>-matrix of optimal transition probabilities in ASCII and COO format. The file header contains <code class="docutils literal notranslate"><span class="pre">num_rows</span></code>, <code class="docutils literal notranslate"><span class="pre">num_cols</span></code>, <code class="docutils literal notranslate"><span class="pre">num_nonzeros</span></code>. Subsequent lines contain the row, column, and value of non-zero entries.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-export_optimal_stage_costs">
+<span class="sig-name descname"><span class="pre">-export_optimal_stage_costs</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;STRING&gt;</span></span><a class="headerlink" href="#cmdoption-export_optimal_stage_costs" title="Link to this definition">#</a></dt>
+<dd><p>Specifies a file to write the optimal stage costs (or rewards) vector.</p>
+<p>Exports the <span class="math notranslate nohighlight">\(n\)</span>-dimensional vector of optimal stage costs (or rewards) in ASCII format, with entries separated by line breaks.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-filename_prefix">
+<span class="sig-name descname"><span class="pre">-filename_prefix</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;STRING&gt;</span></span><a class="headerlink" href="#cmdoption-filename_prefix" title="Link to this definition">#</a></dt>
+<dd><p>Specify a file prefix that is added to all file names. Specifically useful to add the Slurm jobname in front.</p>
+</dd></dl>
+
+</section>
+<section id="useful-petsc-options">
+<h2>Useful PETSc Options<a class="headerlink" href="#useful-petsc-options" title="Link to this heading">#</a></h2>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-ksp_type">
+<span class="sig-name descname"><span class="pre">-ksp_type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;STRING&gt;</span></span><a class="headerlink" href="#cmdoption-ksp_type" title="Link to this definition">#</a></dt>
+<dd><p>Selects the Krylov subspace method for the inner solver of inexact policy iteration.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">&quot;gmres&quot;</span></code></p>
+<p>For a list of available algorithms, refer to the PETSc documentation: <a class="reference external" href="https://petsc.org/release/manualpages/KSP/KSPType/">https://petsc.org/release/manualpages/KSP/KSPType/</a></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pc_type">
+<span class="sig-name descname"><span class="pre">-pc_type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;STRING&gt;</span></span><a class="headerlink" href="#cmdoption-pc_type" title="Link to this definition">#</a></dt>
+<dd><p>Chooses the preconditioner to use before applying the inner solver.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">&quot;none&quot;</span></code></p>
+<p>Only preconditioners that rely on the (transposed) matrix-vector product are supported. For the standard (exact) policy iteration algorithm, set this to “svd” (available only for sequential execution, not recommended for large-scale problems).</p>
+<p>For a list of available preconditioners, see: <a class="reference external" href="https://petsc.org/release/manualpages/PC/PCType/">https://petsc.org/release/manualpages/PC/PCType/</a></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-log_view">
+<span class="sig-name descname"><span class="pre">-log_view</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-log_view" title="Link to this definition">#</a></dt>
+<dd><p>Enables output of a detailed algorithm log to the console.</p>
+<p>This option is useful for debugging and benchmarking purposes.</p>
+</dd></dl>
+
+</section>
+<section id="usage-example">
+<h2>Usage Example<a class="headerlink" href="#usage-example" title="Link to this heading">#</a></h2>
+<p>Command line usage:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./pendulum<span class="w"> </span>-discount_factor<span class="w"> </span><span class="m">0</span>.999<span class="w"> </span>-mode<span class="w"> </span>MINCOST<span class="w"> </span>-max_iter_pi<span class="w"> </span><span class="m">500</span>
+</pre></div>
+</div>
+<p>Using options file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./pendulum<span class="w"> </span>-options<span class="w"> </span>options_file
+</pre></div>
+</div>
+<p>Where <cite>options_file</cite> contains:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>-discount_factor 0.999
+-mode MINCOST
+-max_iter_pi 500
+</pre></div>
+</div>
+<p>Hard-coded options:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mdp</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">MDP</span><span class="p">()</span>
+<span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-mode&quot;</span><span class="p">,</span> <span class="s2">&quot;MINCOST&quot;</span><span class="p">)</span>
+<span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-discount_factor&quot;</span><span class="p">,</span> <span class="s2">&quot;0.999&quot;</span><span class="p">)</span>
+<span class="c1"># or</span>
+<span class="n">mdp</span><span class="p">[</span><span class="s2">&quot;-mode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;MINCOST&quot;</span>
+<span class="n">mdp</span><span class="p">[</span><span class="s2">&quot;-discount_factor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.999</span>
+</pre></div>
+</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">MDP</span><span class="w"> </span><span class="n">mdp</span><span class="p">;</span>
+<span class="n">mdp</span><span class="p">.</span><span class="n">setOption</span><span class="p">(</span><span class="s">&quot;-discount_factor&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;0.999&quot;</span><span class="p">);</span>
+<span class="n">mdp</span><span class="p">.</span><span class="n">setOption</span><span class="p">(</span><span class="s">&quot;-mode&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;MINCOST&quot;</span><span class="p">);</span>
+<span class="n">mdp</span><span class="p">.</span><span class="n">setOption</span><span class="p">(</span><span class="s">&quot;-max_iter_pi&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;500&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>For more information on available KSP types and preconditioners, refer to the PETSc documentation:</p>
+<ul class="simple">
+<li><p>KSP types: <a class="reference external" href="https://petsc.org/release/manualpages/KSP/KSPType/">https://petsc.org/release/manualpages/KSP/KSPType/</a></p></li>
+<li><p>Preconditioner types: <a class="reference external" href="https://petsc.org/release/manualpages/PC/PCType/">https://petsc.org/release/manualpages/PC/PCType/</a></p></li>
+<li><p>PETSc options: <a class="reference external" href="https://petsc.org/release/manualpages/Sys/">https://petsc.org/release/manualpages/Sys/</a></p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="examples.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Examples</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="benchmarks.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Benchmarks</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-options">Required Options</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-options">Optional Options</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-petsc-options">Useful PETSc Options</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage-example">Usage Example</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/options.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Philip Pawlowsky, Robin Sieber.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

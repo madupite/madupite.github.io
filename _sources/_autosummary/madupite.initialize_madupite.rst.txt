@@ -1,0 +1,6 @@
+﻿madupite.initialize\_madupite
+=============================
+
+.. currentmodule:: madupite
+
+.. autofunction:: initialize_madupite

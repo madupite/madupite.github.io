@@ -1,0 +1,23 @@
+﻿madupite.MatrixType
+===================
+
+.. currentmodule:: madupite
+
+.. autoclass:: MatrixType
+
+   
+   .. automethod:: __init__
+
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~MatrixType.Dense
+      ~MatrixType.Sparse
+   
+   

@@ -1,0 +1,6 @@
+﻿madupite.writePETScBinary
+=========================
+
+.. currentmodule:: madupite
+
+.. autofunction:: writePETScBinary

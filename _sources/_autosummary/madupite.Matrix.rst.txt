@@ -1,0 +1,30 @@
+﻿madupite.Matrix
+===============
+
+.. currentmodule:: madupite
+
+.. autoclass:: Matrix
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Matrix.__init__
+      ~Matrix.writeToFile
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Matrix.fromFile
+      ~Matrix.typeToString
+   
+   

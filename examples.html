@@ -1,0 +1,641 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Examples &#8212; madupite</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=8a448e45"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Madupite Options" href="options.html" />
+    <link rel="prev" title="Tutorials" href="tutorial.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/madupite_logo.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/madupite_logo.png" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">madupite</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorial.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="options.html">
+    Options
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="benchmarks.html">
+    Benchmarks
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="apiref.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorial.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="options.html">
+    Options
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="benchmarks.html">
+    Benchmarks
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="apiref.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Examples</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h1>
+<p>Let’s start with a minimal example that demonstrates how to quickly load and solve for the optimal value function and policy of a Markov Decision Process (MDP) using <code class="docutils literal notranslate"><span class="pre">madupite</span></code>.</p>
+<p>We define an MDP as a tuple <span class="math notranslate nohighlight">\((\mathcal{S}, \mathcal{A}, P, g, \gamma)\)</span>, where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathcal{S} = \{0, 1, \dots, n-1\}\)</span> is the set of states,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal{A} = \{0, 1, \dots, m-1\}\)</span> is the set of actions,</p></li>
+<li><p><span class="math notranslate nohighlight">\(P : \mathcal{S} \times \mathcal{A} \times \mathcal{S} \to [0, 1]\)</span> is the transition probability function, where <span class="math notranslate nohighlight">\(P(s, a, s') = \text{Pr}(s_{t+1} = s' | s_t = s, a_t = a)\)</span> and <span class="math notranslate nohighlight">\(\sum_{s' \in \mathcal{S}} P(s, a, s') = 1\)</span> for all <span class="math notranslate nohighlight">\(s \in \mathcal{S}\)</span> and <span class="math notranslate nohighlight">\(a \in \mathcal{A}\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(g : \mathcal{S} \times \mathcal{A} \to \mathbb{R}\)</span> is the stage cost function (or reward in an alternative but equivalent formulation),</p></li>
+<li><p><span class="math notranslate nohighlight">\(\gamma \in (0, 1)\)</span> is the discount factor.</p></li>
+</ul>
+<section id="example-1">
+<h2>Example 1<a class="headerlink" href="#example-1" title="Link to this heading">#</a></h2>
+<p>We start with a simple example: We have an agent that lives on a periodic 1-dimensional line of length 50. At each time step, the agent has to choose between moving to the left, to the right or staying in place. The goal is to move to the state with index 42. We want to find the optimal policy that minimizes the expected number of steps to reach the goal.</p>
+<a class="reference internal image-reference" href="_images/tutorial_ex1.jpg"><img alt="_images/tutorial_ex1.jpg" class="align-center" src="_images/tutorial_ex1.jpg" style="width: 950.25px; height: 951.75px;" />
+</a>
+<p>To do so, we first define the state space <span class="math notranslate nohighlight">\(\mathcal{S} = \{0, 1, \dots, 49\}\)</span> and the action space <span class="math notranslate nohighlight">\(\mathcal{A} = \{0, 1, 2\}\)</span> where 0 means staying in place, 1 means moving to the left and 2 means moving to the right.</p>
+<p>Note that we use 0-based indexing to facilitate translating the mathematical model into code later.</p>
+<p>For the usage in <code class="docutils literal notranslate"><span class="pre">madupite</span></code>, we need to provide a transition probability function that returns for a given state-action pair <span class="math notranslate nohighlight">\((s, a)\)</span> a list of probabilities and a list of corresponding next states. In this case, the model is deterministic and thus the probabilities are always 1. The transition probability function is defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}P(s, a) = \begin{cases}
+    ((1), (s)) &amp; \text{if } a = 0 \\
+    ((1), ((s-1) \mod 50)) &amp; \text{if } a = 1 \\
+    ((1), ((s+1) \mod 50)) &amp; \text{if } a = 2
+\end{cases}\end{split}\]</div>
+<p>Stochasticity can be introduced by making the movements non-deterministic. Let’s say the when the agent moves to left or right, there is a 10% chance that they will stay in place instead. And when the agent stays in place, there is a 10% chance each that they will move to the left or right. The transition probability function is defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}P(s, a) = \begin{cases}
+    ((0.1, 0.8, 0.1), ((s-1) \mod 50, s, (s+1) \mod 50)) &amp; \text{if } a = 0 \\
+    ((0.1, 0.9), (s, (s-1) \mod 50)) &amp; \text{if } a = 1 \\
+    ((0.1, 0.9), (s, (s+1) \mod 50)) &amp; \text{if } a = 2
+\end{cases}\end{split}\]</div>
+<p>Instead of defining a stage cost function, we define a reward function and set the optimization mode to maximize instead of minimize later. The reward function is defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}r(s, a) = \begin{cases}
+    1 &amp; \text{if } s = 42 \\
+    0 &amp; \text{otherwise}
+\end{cases}\end{split}\]</div>
+</section>
+<section id="turning-it-into-code">
+<h2>Turning it into code<a class="headerlink" href="#turning-it-into-code" title="Link to this heading">#</a></h2>
+<p>Let’s start by defining the transition probability function for the deterministic case:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">P_deterministic</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># stay</span>
+        <span class="k">return</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">state</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c1"># left</span>
+        <span class="k">return</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[(</span><span class="n">state</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">50</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span> <span class="c1"># right</span>
+        <span class="k">return</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[(</span><span class="n">state</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">50</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>For the stochastic case:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">P_stochastic</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># stay</span>
+        <span class="k">return</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="p">[(</span><span class="n">state</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">50</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="p">(</span><span class="n">state</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">50</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c1"># left</span>
+        <span class="k">return</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">],</span> <span class="p">[</span><span class="n">state</span><span class="p">,</span> <span class="p">(</span><span class="n">state</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">50</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span> <span class="c1"># right</span>
+        <span class="k">return</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">],</span> <span class="p">[</span><span class="n">state</span><span class="p">,</span> <span class="p">(</span><span class="n">state</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">50</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Next, we define the reward function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">r</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="mi">42</span> <span class="k">else</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>Since <code class="docutils literal notranslate"><span class="pre">madupite</span></code>’s distributed memory parallelism relies on MPI, it is crucial to first initialize the MPI and PETSc environment to ensure that the communication between the processes is set up correctly. This is done by creating an instance using the <code class="docutils literal notranslate"><span class="pre">initialize_madupite</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">madupite</span> <span class="k">as</span> <span class="nn">md</span>
+<span class="n">instance</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">initialize_madupite</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Next we need to create the transition probability tensor and stage cost matrix using the previously defined functions. The methods <code class="docutils literal notranslate"><span class="pre">createTransitionProbabilityTensor</span></code> and <code class="docutils literal notranslate"><span class="pre">createStageCostMatrix</span></code> return a custom matrix type where the data is automaically distributed across the processes when run in parallel. Transition probability tensors are stored in a sparse format, while stage cost matrices are stored in a dense format to optimize memory usage.</p>
+<p>For performance it is <strong>strongly recommended</strong> to preallocate the memory for the transition probability tensor as this can improve the performance of creating the objects by orders of magnitude. We refer to <a class="reference external" href="https://petsc.org/release/manualpages/Mat/MatMPIAIJSetPreallocation/">PETSc’s documentation</a> for more details on how data is distributed and stored on multiple processes. The easiest (yet not the most efficient) way is to find an upper bound for the number of non-zero elements per row. That is, the maximum number of states that can be reached from a single state-action pair. For this example, this is 1 in the deterministic case and 3 in the stochastic case. Thus we create a preallocation object:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prealloc_deterministic</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">MatrixPreallocation</span><span class="p">()</span>
+<span class="n">prealloc_deterministic</span><span class="o">.</span><span class="n">d_nz</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">prealloc_deterministic</span><span class="o">.</span><span class="n">o_nz</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">prealloc_stochastic</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">MatrixPreallocation</span><span class="p">()</span>
+<span class="n">prealloc_stochastic</span><span class="o">.</span><span class="n">d_nz</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">prealloc_stochastic</span><span class="o">.</span><span class="n">o_nz</span> <span class="o">=</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p>We refer to the PETSc documentation linked above and the <code class="docutils literal notranslate"><span class="pre">madupite.MatrixPreallocation</span></code> documentation in the API reference for more details on how to efficiently preallocate memory.</p>
+<p>Finally, we create the transition probability tensor and stage cost matrix:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">P_mat_deterministic</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">createTransitionProbabilityTensor</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;prob_ex1_deterministic&quot;</span><span class="p">,</span>
+    <span class="n">numStates</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">numActions</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">func</span><span class="o">=</span><span class="n">P_deterministic</span><span class="p">,</span>
+    <span class="n">preallocation</span><span class="o">=</span><span class="n">prealloc_deterministic</span>
+<span class="p">)</span>
+
+<span class="n">P_mat_stochastic</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">createTransitionProbabilityTensor</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;prob_ex1_stochastic&quot;</span><span class="p">,</span>
+    <span class="n">numStates</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">numActions</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">func</span><span class="o">=</span><span class="n">P_stochastic</span><span class="p">,</span>
+    <span class="n">preallocation</span><span class="o">=</span><span class="n">prealloc_stochastic</span>
+<span class="p">)</span>
+
+<span class="n">r_mat</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">createStageCostMatrix</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;reward_ex1&quot;</span><span class="p">,</span>
+    <span class="n">numStates</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">numActions</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">func</span><span class="o">=</span><span class="n">r</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The functions defining the transition probabilities and stage costs / rewards will each be evaluated <span class="math notranslate nohighlight">\(n \times m\)</span> times in order to fill these matrices. This can be a time-consuming process why parallel execution as well as preallocation is recommended. Consider also using a JIT compiler like Numba to speed up the evaluation of these functions.</p>
+<p>Finally we can put the ingredients together and build an MDP object:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mdp</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">MDP</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
+<span class="n">mdp</span><span class="o">.</span><span class="n">setTransitionProbabilityTensor</span><span class="p">(</span><span class="n">P_mat_deterministic</span><span class="p">)</span>
+<span class="n">mdp</span><span class="o">.</span><span class="n">setStageCostMatrix</span><span class="p">(</span><span class="n">r_mat</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, we need to specify options for the solver. Two options are required for the solver to work: the discount factor <span class="math notranslate nohighlight">\(\gamma\)</span> and the optimization mode. The optimization mode can be either <code class="docutils literal notranslate"><span class="pre">MINCOST</span></code> or <code class="docutils literal notranslate"><span class="pre">MAXREWARD</span></code>. In this case, we defined the model as a reward maximization problem, so we set the optimization mode to <code class="docutils literal notranslate"><span class="pre">MAXREWARD</span></code>. The discount factor can be set to any value between 0 and 1. For this example, we set it to 0.99. See <a class="reference internal" href="options.html"><span class="doc">Madupite Options</span></a> for a list of all available options.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-mode&quot;</span><span class="p">,</span> <span class="s2">&quot;MAXREWARD&quot;</span><span class="p">)</span>
+<span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-discount_factor&quot;</span><span class="p">,</span> <span class="s2">&quot;0.99&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, we can solve the MDP using the <code class="docutils literal notranslate"><span class="pre">solve</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mdp</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>We can re-use the same MDP object to solve the stochastic case as well. We only need to set the transition probability tensor to the stochastic one. In this case, we might also want to save the optimal policy to a file for later use:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mdp</span><span class="o">.</span><span class="n">setTransitionProbabilityTensor</span><span class="p">(</span><span class="n">P_mat_stochastic</span><span class="p">)</span>
+<span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-file_policy&quot;</span><span class="p">,</span> <span class="s2">&quot;ex1_policy.txt&quot;</span><span class="p">)</span>
+<span class="n">mdp</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>In order to run the code, save it to a file, e.g. <code class="docutils literal notranslate"><span class="pre">ex1.py</span></code> and run it sequentially using <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">ex1.py</span></code> or in parallel using <code class="docutils literal notranslate"><span class="pre">mpirun</span> <span class="pre">-n</span> <span class="pre">N</span> <span class="pre">python</span> <span class="pre">ex1.py</span></code> where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of processes.</p>
+</section>
+<section id="further-examples">
+<h2>Further examples<a class="headerlink" href="#further-examples" title="Link to this heading">#</a></h2>
+<p>Note that defining data from a function or loading from a file can be combined. See for example the maze example where the transition probabilities encode a deterministic movement in a 2D grid world and the maze logic is entirely defined in the cost function that is generated in a separate script. This can also apply to situations where e.g. costs come from measuring an experiment and are preproucessed in a separate application, independent of <code class="docutils literal notranslate"><span class="pre">madupite</span></code>.</p>
+<p>Standard control applications like the double integrator and inverted pendulum using an LQR controller are also provided in the examples folder. They can also serve as examples for how to use multi-dimensional state spaces and actions.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tutorial.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tutorials</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="options.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Madupite Options</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1">Example 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#turning-it-into-code">Turning it into code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-examples">Further examples</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/examples.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Philip Pawlowsky, Robin Sieber.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

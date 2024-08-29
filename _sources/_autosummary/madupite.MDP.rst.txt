@@ -1,0 +1,28 @@
+﻿madupite.MDP
+============
+
+.. currentmodule:: madupite
+
+.. autoclass:: MDP
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~MDP.__init__
+      ~MDP.clearOptions
+      ~MDP.setOption
+      ~MDP.setStageCostMatrix
+      ~MDP.setTransitionProbabilityTensor
+      ~MDP.setUp
+      ~MDP.solve
+   
+   
+
+   
+   
+   

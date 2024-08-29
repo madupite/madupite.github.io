@@ -1,0 +1,31 @@
+﻿madupite.MatrixPreallocation
+============================
+
+.. currentmodule:: madupite
+
+.. autoclass:: MatrixPreallocation
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~MatrixPreallocation.__init__
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~MatrixPreallocation.d_nnz
+      ~MatrixPreallocation.d_nz
+      ~MatrixPreallocation.o_nnz
+      ~MatrixPreallocation.o_nz
+   
+   
