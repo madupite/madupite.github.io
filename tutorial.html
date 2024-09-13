@@ -169,13 +169,6 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="benchmarks.html">
-    Benchmarks
-  </a>
-</li>
-
-
-<li class="nav-item ">
   <a class="nav-link nav-internal" href="apiref.html">
     API Reference
   </a>
@@ -294,13 +287,6 @@ document.write(`
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="benchmarks.html">
-    Benchmarks
-  </a>
-</li>
-
-
-<li class="nav-item ">
   <a class="nav-link nav-internal" href="apiref.html">
     API Reference
   </a>
@@ -384,21 +370,31 @@ document.write(`
   <section id="tutorials">
 <h1>Tutorials<a class="headerlink" href="#tutorials" title="Link to this heading">#</a></h1>
 <p>In the following, we propose some short tutorials which we hope can help the users to better understand the deployment of some of the fundamental functionalities of <code class="docutils literal notranslate"><span class="pre">madupite</span></code>.</p>
-<section id="initializing-and-finalizing-madupite">
-<h2>Initializing and finalizing <code class="docutils literal notranslate"><span class="pre">madupite</span></code><a class="headerlink" href="#initializing-and-finalizing-madupite" title="Link to this heading">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">madupite</span></code> can be imported as any other Python package. Though, since it relies on MPI for the distributed memory parallelism, it is crucial to first initialize the MPI and PETSc environment to ensure that the communication between the processes is set up correctly.
-In addition, to properly finalize all MPI jobs, we suggest that the code is contained inside a main function.</p>
+<section id="writing-and-running-your-code-using-madupite">
+<h2>Writing and running your code using <code class="docutils literal notranslate"><span class="pre">madupite</span></code><a class="headerlink" href="#writing-and-running-your-code-using-madupite" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">madupite</span></code> can be imported and used as any other Python package. Though, if you want to run your code it in a parallel/distributed set up, the code should be contained inside a <code class="docutils literal notranslate"><span class="pre">main</span></code> function as this guarantees a correct finalization of the MPI ranks.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">madupite</span> <span class="k">as</span> <span class="nn">md</span>
-<span class="n">instance</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">initialize_madupite</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
 
-    <span class="c1">#main body of your code :)</span>
+    <span class="c1"># main body of your code</span>
 </pre></div>
 </div>
+<p>In this way, you can save your code into a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file, <em>e.g.</em> <code class="docutils literal notranslate"><span class="pre">mycode.py</span></code>, and then run it smoothly with the command <code class="docutils literal notranslate"><span class="pre">mpirun</span> <span class="pre">-n</span> <span class="pre">&lt;number_of_ranks&gt;</span> <span class="pre">python</span> <span class="pre">mycode.py</span></code>. There is no need to use the <code class="docutils literal notranslate"><span class="pre">main</span></code> function if you instead just want to run your code in a single-core setting with the command <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">mycode.py</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Note that as of <code class="docutils literal notranslate"><span class="pre">madupite</span></code> V1.0, if you do not use the <code class="docutils literal notranslate"><span class="pre">main</span></code> function and then run your code with <code class="docutils literal notranslate"><span class="pre">mpirun</span> <span class="pre">-n</span> <span class="pre">&lt;number_of_ranks&gt;</span> <span class="pre">python</span> <span class="pre">mycode.py</span></code>, then your code will still run and output the desired results, but an error will be raised at the end of the execution because the finalization of the ranks is not handled appropriately.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>nanobind: leaked 1 instances!
+nanobind: leaked 1 keep_alive records!
+nanobind: leaked 1 types!
+  - leaked type &quot;madupite._madupite_impl.Madupite&quot;
+nanobind: this is likely caused by a reference counting issue in the binding code.
+</pre></div>
+</div>
+</div>
 </section>
-<section id="loading-and-reading-data-with-madupite">
-<h2>Loading and reading data with <code class="docutils literal notranslate"><span class="pre">madupite</span></code><a class="headerlink" href="#loading-and-reading-data-with-madupite" title="Link to this heading">#</a></h2>
+<section id="loading-and-reading-data">
+<h2>Loading and reading data<a class="headerlink" href="#loading-and-reading-data" title="Link to this heading">#</a></h2>
 <p>In this tutorial, we want to show how to load and read MDP data that is stored in files. The data itself must be stored as a PETSc binary file (explained <a class="reference external" href="https://petsc.org/release/manualpages/Mat/MatLoad/">here</a>). <code class="docutils literal notranslate"><span class="pre">madupite</span></code> provides a method to save numpy or scipy matrices to PETSc binary files (<a class="reference internal" href="_autosummary/madupite.writePETScBinary.html#madupite.writePETScBinary" title="madupite.writePETScBinary"><code class="xref py py-func docutils literal notranslate"><span class="pre">madupite.writePETScBinary()</span></code></a>).</p>
 <p>Assuming the stage cost matrix and transition probability tensor are stored as <code class="docutils literal notranslate"><span class="pre">g.bin</span></code> and <code class="docutils literal notranslate"><span class="pre">P.bin</span></code> we can load them with <code class="xref py py-func docutils literal notranslate"><span class="pre">madupite.Matrix.fromFile()</span></code>. We need to specify whether it is a stage cost matrix (<code class="docutils literal notranslate"><span class="pre">md.MatrixCategory.Cost</span></code>) or a transition probability tensor (<code class="docutils literal notranslate"><span class="pre">md.MatrixCategory.Dynamics</span></code>) to ensure that the number of states and actions is correctly inferred.</p>
 <p>Furthermore, you can specify whether the matrix is sparse or dense using the <code class="docutils literal notranslate"><span class="pre">md.MatrixType</span></code> enum. Sparse matrices are stored in a compressed format, which can save memory and speed up computations.</p>
@@ -420,14 +416,14 @@ In addition, to properly finalize all MPI jobs, we suggest that the code is cont
 
     <span class="c1"># Load matrices from file</span>
     <span class="n">g</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">Matrix</span><span class="o">.</span><span class="n">fromFile</span><span class="p">(</span>
-        <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;g.bin&quot;</span><span class="p">,</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;g.bin&quot;</span><span class="p">,</span>
         <span class="n">category</span><span class="o">=</span><span class="n">md</span><span class="o">.</span><span class="n">MatrixCategory</span><span class="o">.</span><span class="n">Cost</span><span class="p">,</span>
-        <span class="nb">type</span><span class="o">=</span><span class="n">md</span><span class="o">.</span><span class="n">MatrixType</span><span class="o">.</span><span class="n">Dense</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="n">md</span><span class="o">.</span><span class="n">MatrixType</span><span class="o">.</span><span class="n">Dense</span>
     <span class="p">)</span>
     <span class="n">P</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">Matrix</span><span class="o">.</span><span class="n">fromFile</span><span class="p">(</span>
-        <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;P.bin&quot;</span><span class="p">,</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;P.bin&quot;</span><span class="p">,</span>
         <span class="n">category</span><span class="o">=</span><span class="n">md</span><span class="o">.</span><span class="n">MatrixCategory</span><span class="o">.</span><span class="n">Dynamics</span><span class="p">,</span>
-        <span class="nb">type</span><span class="o">=</span><span class="n">md</span><span class="o">.</span><span class="n">MatrixType</span><span class="o">.</span><span class="n">Sparse</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="n">md</span><span class="o">.</span><span class="n">MatrixType</span><span class="o">.</span><span class="n">Sparse</span>
     <span class="p">)</span>
 
 
@@ -440,8 +436,8 @@ In addition, to properly finalize all MPI jobs, we suggest that the code is cont
 <p>Note that as of <code class="docutils literal notranslate"><span class="pre">madupite</span></code> V1.0, the files themselves must contain the data in a sparse format because PETSc does not support reading dense matrices from binary files. By specifying the matrix type as dense, the data will be read as a sparse matrix and then converted to a dense matrix. This is recommended for stage cost matrices to benefit from data locality and speed up computations.</p>
 </div>
 </section>
-<section id="generating-data-with-madupite">
-<h2>Generating data with <code class="docutils literal notranslate"><span class="pre">madupite</span></code><a class="headerlink" href="#generating-data-with-madupite" title="Link to this heading">#</a></h2>
+<section id="generating-data">
+<h2>Generating data<a class="headerlink" href="#generating-data" title="Link to this heading">#</a></h2>
 <p>Depending on the problem, creating the MDP data with numpy and reading them with <code class="docutils literal notranslate"><span class="pre">madupite</span></code> is often slower than generating them directly with <code class="docutils literal notranslate"><span class="pre">madupite</span></code>. This is because <code class="docutils literal notranslate"><span class="pre">madupite</span></code> can  generate the transition probabilities in parallel and in the correct format, which avoids the need to convert the data.</p>
 <p>In the following example, we show how to generate the stage cost matrix and transition probability tensor with <code class="docutils literal notranslate"><span class="pre">madupite</span></code>. We define a cost function and a probability function that are used to generate the data. The cost function takes the current state and action as input and returns the cost. The probability function takes the current state and action as input and returns the transition probabilities and the next state indices.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">madupite</span> <span class="k">as</span> <span class="nn">md</span>
@@ -466,7 +462,7 @@ In addition, to properly finalize all MPI jobs, we suggest that the code is cont
     <span class="n">P</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">createTransitionProbabilityTensor</span><span class="p">(</span>
         <span class="n">numStates</span><span class="o">=</span><span class="n">num_states</span><span class="p">,</span>
         <span class="n">numActions</span><span class="o">=</span><span class="n">num_actions</span><span class="p">,</span>
-        <span class="n">func</span><span class="o">=</span><span class="n">probfunc</span><span class="p">,</span>
+        <span class="n">func</span><span class="o">=</span><span class="n">probfunc</span>
     <span class="p">)</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
@@ -595,10 +591,59 @@ In the above case the values for <code class="docutils literal notranslate"><spa
 </pre></div>
 </div>
 </section>
-<section id="the-mdp-class-in-madupite">
-<h2>The MDP-class in <code class="docutils literal notranslate"><span class="pre">madupite</span></code><a class="headerlink" href="#the-mdp-class-in-madupite" title="Link to this heading">#</a></h2>
-<p>Now that all the main ingredients are explained, we are ready to introduce the MDP-class, which is basically where all the magic of <code class="docutils literal notranslate"><span class="pre">madupite</span></code> happens! This class allows you to create and solve your own MDP, and it comes with a lot of options that you can customize.
-TODO</p>
+<section id="the-mdp-class">
+<h2>The MDP-class<a class="headerlink" href="#the-mdp-class" title="Link to this heading">#</a></h2>
+<p>Now that all the main ingredients are explained, we are ready to introduce the MDP-class, which is basically where all the magic of <code class="docutils literal notranslate"><span class="pre">madupite</span></code> happens! This class allows you to create and solve your own MDP, and it comes with a lot of options that you can use to customize your MDP. The code snippet down below exemplifies how you use instances of this class to create and solve an MDP. In particular, it simulates via functions, creates and solves a dense random MDP with <code class="docutils literal notranslate"><span class="pre">madupite</span></code>.
+The optimal policy and stats are saved into <cite>policy.out</cite> and <cite>stats.json</cite> files at the end.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">madupite</span> <span class="k">as</span> <span class="nn">md</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">num_states</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">num_actions</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="k">def</span> <span class="nf">probfunc</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">a</span><span class="p">):</span>
+    <span class="n">prob_sprime</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">num_states</span><span class="p">)</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="p">(</span><span class="n">prob_sprime</span><span class="o">/</span><span class="n">prob_sprime</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">values</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">num_states</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">costfunc</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+
+    <span class="n">mdp</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">MDP</span><span class="p">()</span>
+
+    <span class="n">prealloc</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">MatrixPreallocation</span><span class="p">()</span>
+    <span class="n">prealloc</span><span class="o">.</span><span class="n">d_nz</span> <span class="o">=</span> <span class="n">num_states</span>
+    <span class="n">prealloc</span><span class="o">.</span><span class="n">o_nz</span> <span class="o">=</span> <span class="n">num_states</span>
+
+    <span class="n">g</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">createStageCostMatrix</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">,</span> <span class="n">numStates</span><span class="o">=</span><span class="n">num_states</span><span class="p">,</span> <span class="n">numActions</span><span class="o">=</span><span class="n">num_actions</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="n">costfunc</span>
+    <span class="p">)</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">createTransitionProbabilityTensor</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;P&quot;</span><span class="p">,</span>
+        <span class="n">numStates</span><span class="o">=</span><span class="n">num_states</span><span class="p">,</span>
+        <span class="n">numActions</span><span class="o">=</span><span class="n">num_actions</span><span class="p">,</span>
+        <span class="n">func</span><span class="o">=</span><span class="n">probfunc</span><span class="p">,</span>
+        <span class="n">preallocation</span><span class="o">=</span><span class="n">prealloc</span>
+    <span class="p">)</span>
+
+    <span class="n">mdp</span><span class="o">.</span><span class="n">setStageCostMatrix</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+    <span class="n">mdp</span><span class="o">.</span><span class="n">setTransitionProbabilityTensor</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+
+    <span class="c1">#mandatory options to select</span>
+    <span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-mode&quot;</span><span class="p">,</span> <span class="s2">&quot;MINCOST&quot;</span><span class="p">)</span>
+    <span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-discount_factor&quot;</span><span class="p">,</span> <span class="s2">&quot;0.9&quot;</span><span class="p">)</span>
+
+    <span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-file_policy&quot;</span><span class="p">,</span> <span class="s2">&quot;policy.out&quot;</span><span class="p">)</span>
+    <span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-file_stats&quot;</span><span class="p">,</span> <span class="s2">&quot;stats.json&quot;</span><span class="p">)</span>
+
+    <span class="n">mdp</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -648,12 +693,12 @@ TODO</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing-and-finalizing-madupite">Initializing and finalizing <code class="docutils literal notranslate"><span class="pre">madupite</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-and-reading-data-with-madupite">Loading and reading data with <code class="docutils literal notranslate"><span class="pre">madupite</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-data-with-madupite">Generating data with <code class="docutils literal notranslate"><span class="pre">madupite</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-and-running-your-code-using-madupite">Writing and running your code using <code class="docutils literal notranslate"><span class="pre">madupite</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-and-reading-data">Loading and reading data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-data">Generating data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-preallocation">Matrix preallocation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-format">Data format</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mdp-class-in-madupite">The MDP-class in <code class="docutils literal notranslate"><span class="pre">madupite</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mdp-class">The MDP-class</a></li>
 </ul>
   </nav></div>
 

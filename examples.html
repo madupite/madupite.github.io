@@ -170,13 +170,6 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="benchmarks.html">
-    Benchmarks
-  </a>
-</li>
-
-
-<li class="nav-item ">
   <a class="nav-link nav-internal" href="apiref.html">
     API Reference
   </a>
@@ -295,13 +288,6 @@ document.write(`
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="benchmarks.html">
-    Benchmarks
-  </a>
-</li>
-
-
-<li class="nav-item ">
   <a class="nav-link nav-internal" href="apiref.html">
     API Reference
   </a>
@@ -384,8 +370,8 @@ document.write(`
                   
   <section id="examples">
 <h1>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h1>
-<p>Let’s start with a minimal example that demonstrates how to quickly load and solve for the optimal value function and policy of a Markov Decision Process (MDP) using <code class="docutils literal notranslate"><span class="pre">madupite</span></code>.</p>
-<p>We define an MDP as a tuple <span class="math notranslate nohighlight">\((\mathcal{S}, \mathcal{A}, P, g, \gamma)\)</span>, where:</p>
+<p>Here you can find some examples on how to use <code class="docutils literal notranslate"><span class="pre">madupite</span></code> to create and solve MDPs arising from different scenarios. But first, a small recap on MDPs.</p>
+<p>MDPs are a very useful tool to describe stochastic dynamical systems. In mathematical terms, an MDP is a 5-elements tuple <span class="math notranslate nohighlight">\((\mathcal{S}, \mathcal{A}, P, g, \gamma)\)</span>, where:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\mathcal{S} = \{0, 1, \dots, n-1\}\)</span> is the set of states,</p></li>
 <li><p><span class="math notranslate nohighlight">\(\mathcal{A} = \{0, 1, \dots, m-1\}\)</span> is the set of actions,</p></li>
@@ -393,37 +379,16 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(g : \mathcal{S} \times \mathcal{A} \to \mathbb{R}\)</span> is the stage cost function (or reward in an alternative but equivalent formulation),</p></li>
 <li><p><span class="math notranslate nohighlight">\(\gamma \in (0, 1)\)</span> is the discount factor.</p></li>
 </ul>
-<section id="example-1">
-<h2>Example 1<a class="headerlink" href="#example-1" title="Link to this heading">#</a></h2>
-<p>We start with a simple example: We have an agent that lives on a periodic 1-dimensional line of length 50. At each time step, the agent has to choose between moving to the left, to the right or staying in place. The goal is to move to the state with index 42. We want to find the optimal policy that minimizes the expected number of steps to reach the goal.</p>
-<a class="reference internal image-reference" href="_images/tutorial_ex1.jpg"><img alt="_images/tutorial_ex1.jpg" class="align-center" src="_images/tutorial_ex1.jpg" style="width: 950.25px; height: 951.75px;" />
+<p>Given an MDP, <code class="docutils literal notranslate"><span class="pre">madupite</span></code> will compute which actions should be played on the system such that the cumulative discounted cost (reward) over the infinite-horizon is minimized (maximized). You can find more details on the mathematical formulation of the problem setting in [Gargiani2024].</p>
+<section id="toy-example">
+<h2>Toy-Example<a class="headerlink" href="#toy-example" title="Link to this heading">#</a></h2>
+<p>We start with a simple example.
+Let’s consider an agent that lives on a periodic 1-dimensional line of length 50. At each time-step, the agent has to decide whether moving to the left, to the right or staying in its place. The goal is to reach state 42 with the minimal number of steps. This problem can be mathematically formulated as an MDP with <span class="math notranslate nohighlight">\(\mathcal{S} = \left\{0, \,1,\,\dots,\,49 \right\}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{A} = \left\{0,\,1,\,2\right\}\)</span>, where 0 corresponds to the action <em>stay</em>, 1 to the action <em>move-left</em> and 2 to the action <em>move-right</em>. By moving to the right from state <span class="math notranslate nohighlight">\(s\)</span> the agent will lend to state <span class="math notranslate nohighlight">\((s+1) \,\text{mod}\, 50\)</span> and by moving to the left it will move to state <span class="math notranslate nohighlight">\((s-1) \,\text{mod}\, 50\)</span>. Transitions are deterministic in this case and a probability of 1 is associated to the triplet <span class="math notranslate nohighlight">\((s,a,s')\)</span> only when <span class="math notranslate nohighlight">\(s\)</span> is the transitioning state associated to the pair <span class="math notranslate nohighlight">\((s,a)\)</span>. Finally, the agent will get a reward of 1 if it reaches state 42, while a reward of 0 is associated to all other state-action pairs.
+Imagine also the scenario where our agent is moving on ice. When it tries to move to the left (or right), there is a 10% chance that it falls and ends up staying in its place instead of moving in state <span class="math notranslate nohighlight">\((s-1)\,\text{mod}\,50\)</span> (or <span class="math notranslate nohighlight">\((s-1)\,\text{mod}\,50\)</span>). The slippery iced floor also introduces a 10% chance that when it plays action 0 it slips to the left or right state.
+Now we turn this into code and use <code class="docutils literal notranslate"><span class="pre">madupite</span></code> to model and solve the MDP associated to the described system.</p>
+<a class="reference internal image-reference" href="_images/tutorial_ex1.jpg"><img alt="_images/tutorial_ex1.jpg" class="align-center" src="_images/tutorial_ex1.jpg" style="width: 443.45px; height: 444.15px;" />
 </a>
-<p>To do so, we first define the state space <span class="math notranslate nohighlight">\(\mathcal{S} = \{0, 1, \dots, 49\}\)</span> and the action space <span class="math notranslate nohighlight">\(\mathcal{A} = \{0, 1, 2\}\)</span> where 0 means staying in place, 1 means moving to the left and 2 means moving to the right.</p>
-<p>Note that we use 0-based indexing to facilitate translating the mathematical model into code later.</p>
-<p>For the usage in <code class="docutils literal notranslate"><span class="pre">madupite</span></code>, we need to provide a transition probability function that returns for a given state-action pair <span class="math notranslate nohighlight">\((s, a)\)</span> a list of probabilities and a list of corresponding next states. In this case, the model is deterministic and thus the probabilities are always 1. The transition probability function is defined as follows:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}P(s, a) = \begin{cases}
-    ((1), (s)) &amp; \text{if } a = 0 \\
-    ((1), ((s-1) \mod 50)) &amp; \text{if } a = 1 \\
-    ((1), ((s+1) \mod 50)) &amp; \text{if } a = 2
-\end{cases}\end{split}\]</div>
-<p>Stochasticity can be introduced by making the movements non-deterministic. Let’s say the when the agent moves to left or right, there is a 10% chance that they will stay in place instead. And when the agent stays in place, there is a 10% chance each that they will move to the left or right. The transition probability function is defined as follows:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}P(s, a) = \begin{cases}
-    ((0.1, 0.8, 0.1), ((s-1) \mod 50, s, (s+1) \mod 50)) &amp; \text{if } a = 0 \\
-    ((0.1, 0.9), (s, (s-1) \mod 50)) &amp; \text{if } a = 1 \\
-    ((0.1, 0.9), (s, (s+1) \mod 50)) &amp; \text{if } a = 2
-\end{cases}\end{split}\]</div>
-<p>Instead of defining a stage cost function, we define a reward function and set the optimization mode to maximize instead of minimize later. The reward function is defined as follows:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}r(s, a) = \begin{cases}
-    1 &amp; \text{if } s = 42 \\
-    0 &amp; \text{otherwise}
-\end{cases}\end{split}\]</div>
-</section>
-<section id="turning-it-into-code">
-<h2>Turning it into code<a class="headerlink" href="#turning-it-into-code" title="Link to this heading">#</a></h2>
-<p>Let’s start by defining the transition probability function for the deterministic case:</p>
+<p>We start by defining the transition probability function for both the deterministic and the stochastic scenario, and the reward function:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">P_deterministic</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># stay</span>
         <span class="k">return</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">state</span><span class="p">]</span>
@@ -431,93 +396,149 @@ document.write(`
         <span class="k">return</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[(</span><span class="n">state</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">50</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span> <span class="c1"># right</span>
         <span class="k">return</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[(</span><span class="n">state</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">50</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>For the stochastic case:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">P_stochastic</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+
+<span class="k">def</span> <span class="nf">P_stochastic</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># stay</span>
         <span class="k">return</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="p">[(</span><span class="n">state</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">50</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="p">(</span><span class="n">state</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">50</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c1"># left</span>
         <span class="k">return</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">],</span> <span class="p">[</span><span class="n">state</span><span class="p">,</span> <span class="p">(</span><span class="n">state</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">50</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span> <span class="c1"># right</span>
         <span class="k">return</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">],</span> <span class="p">[</span><span class="n">state</span><span class="p">,</span> <span class="p">(</span><span class="n">state</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">50</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>Next, we define the reward function:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">r</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+
+<span class="k">def</span> <span class="nf">r</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
     <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="mi">42</span> <span class="k">else</span> <span class="mi">0</span>
 </pre></div>
 </div>
-<p>Since <code class="docutils literal notranslate"><span class="pre">madupite</span></code>’s distributed memory parallelism relies on MPI, it is crucial to first initialize the MPI and PETSc environment to ensure that the communication between the processes is set up correctly. This is done by creating an instance using the <code class="docutils literal notranslate"><span class="pre">initialize_madupite</span></code> method:</p>
+<p>Let’s start by considering the deterministic scenario: it is full summer and the agent is moving on very dry ground.
+Within the <code class="docutils literal notranslate"><span class="pre">main</span></code> function, we first create the <code class="docutils literal notranslate"><span class="pre">madupite</span></code>-objects for the transition probability tensor and reward matrix with the functions <code class="docutils literal notranslate"><span class="pre">createTransitionProbabilityTensor</span></code> and <code class="docutils literal notranslate"><span class="pre">createStageCostMatrix</span></code>, respectively. Then we generate an instance of the <code class="docutils literal notranslate"><span class="pre">madupite</span></code> MDP-class, customize it for this setting, solve it and save the obtained policy and statistics into <cite>policy_deterministic.out</cite> and <cite>stats_deterministic.json</cite> files.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">madupite</span> <span class="k">as</span> <span class="nn">md</span>
-<span class="n">instance</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">initialize_madupite</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>Next we need to create the transition probability tensor and stage cost matrix using the previously defined functions. The methods <code class="docutils literal notranslate"><span class="pre">createTransitionProbabilityTensor</span></code> and <code class="docutils literal notranslate"><span class="pre">createStageCostMatrix</span></code> return a custom matrix type where the data is automaically distributed across the processes when run in parallel. Transition probability tensors are stored in a sparse format, while stage cost matrices are stored in a dense format to optimize memory usage.</p>
-<p>For performance it is <strong>strongly recommended</strong> to preallocate the memory for the transition probability tensor as this can improve the performance of creating the objects by orders of magnitude. We refer to <a class="reference external" href="https://petsc.org/release/manualpages/Mat/MatMPIAIJSetPreallocation/">PETSc’s documentation</a> for more details on how data is distributed and stored on multiple processes. The easiest (yet not the most efficient) way is to find an upper bound for the number of non-zero elements per row. That is, the maximum number of states that can be reached from a single state-action pair. For this example, this is 1 in the deterministic case and 3 in the stochastic case. Thus we create a preallocation object:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prealloc_deterministic</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">MatrixPreallocation</span><span class="p">()</span>
-<span class="n">prealloc_deterministic</span><span class="o">.</span><span class="n">d_nz</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">prealloc_deterministic</span><span class="o">.</span><span class="n">o_nz</span> <span class="o">=</span> <span class="mi">1</span>
 
-<span class="n">prealloc_stochastic</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">MatrixPreallocation</span><span class="p">()</span>
-<span class="n">prealloc_stochastic</span><span class="o">.</span><span class="n">d_nz</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">prealloc_stochastic</span><span class="o">.</span><span class="n">o_nz</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+
+    <span class="n">prealloc</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">MatrixPreallocation</span><span class="p">()</span>
+    <span class="n">prealloc</span><span class="o">.</span><span class="n">d_nz</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">prealloc</span><span class="o">.</span><span class="n">o_nz</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="n">num_states</span> <span class="o">=</span> <span class="mi">50</span>
+    <span class="n">num_actions</span> <span class="o">=</span> <span class="mi">3</span>
+
+    <span class="n">P_mat_deterministic</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">createTransitionProbabilityTensor</span><span class="p">(</span>
+        <span class="n">numStates</span><span class="o">=</span><span class="n">num_states</span><span class="p">,</span>
+        <span class="n">numActions</span><span class="o">=</span><span class="n">num_actions</span><span class="p">,</span>
+        <span class="n">func</span><span class="o">=</span><span class="n">P_deterministic</span><span class="p">,</span>
+        <span class="n">preallocation</span><span class="o">=</span><span class="n">prealloc</span>
+    <span class="p">)</span>
+
+    <span class="n">r_mat</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">createStageCostMatrix</span><span class="p">(</span>
+        <span class="n">numStates</span><span class="o">=</span><span class="n">num_states</span><span class="p">,</span>
+        <span class="n">numActions</span><span class="o">=</span><span class="n">num_actions</span><span class="p">,</span>
+        <span class="n">func</span><span class="o">=</span><span class="n">r</span>
+    <span class="p">)</span>
+
+    <span class="n">mdp</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">MDP</span><span class="p">()</span>
+    <span class="n">mdp</span><span class="o">.</span><span class="n">setTransitionProbabilityTensor</span><span class="p">(</span><span class="n">P_mat_deterministic</span><span class="p">)</span>
+    <span class="n">mdp</span><span class="o">.</span><span class="n">setStageCostMatrix</span><span class="p">(</span><span class="n">r_mat</span><span class="p">)</span>
+
+    <span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-mode&quot;</span><span class="p">,</span> <span class="s2">&quot;MAXREWARD&quot;</span><span class="p">)</span>
+    <span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-discount_factor&quot;</span><span class="p">,</span> <span class="s2">&quot;0.9&quot;</span><span class="p">)</span>
+
+    <span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-file_policy&quot;</span><span class="p">,</span> <span class="s2">&quot;policy_deterministic.out&quot;</span><span class="p">)</span>
+    <span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-file_stats&quot;</span><span class="p">,</span> <span class="s2">&quot;stats_deterministic.json&quot;</span><span class="p">)</span>
+
+    <span class="n">mdp</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>We refer to the PETSc documentation linked above and the <code class="docutils literal notranslate"><span class="pre">madupite.MatrixPreallocation</span></code> documentation in the API reference for more details on how to efficiently preallocate memory.</p>
-<p>Finally, we create the transition probability tensor and stage cost matrix:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">P_mat_deterministic</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">createTransitionProbabilityTensor</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;prob_ex1_deterministic&quot;</span><span class="p">,</span>
-    <span class="n">numStates</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-    <span class="n">numActions</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-    <span class="n">func</span><span class="o">=</span><span class="n">P_deterministic</span><span class="p">,</span>
-    <span class="n">preallocation</span><span class="o">=</span><span class="n">prealloc_deterministic</span>
-<span class="p">)</span>
+<p>In case we want to run benchmarks with a different discount factor, inner solver, transition probability tensor, stage cost etc…there is no need to create another MDP-instance, but we can simply re-use the previous one. We now consider the agent moving on ice and, because of the stochasticity, we also increase the discount factor to obtain a more robust policy. For that we add the following code to our <code class="docutils literal notranslate"><span class="pre">main</span></code> function. In particular, we have to update the transition probability tensor in our MDP instance <code class="docutils literal notranslate"><span class="pre">mdp</span></code>, and also the option <code class="docutils literal notranslate"><span class="pre">-discount_factor</span></code>. Notice that we have to update also the preallocation parameters <code class="docutils literal notranslate"><span class="pre">d_nz</span></code> and <code class="docutils literal notranslate"><span class="pre">o_nz</span></code> since this time 3 states are reachable from any state. Finally, we save the obtained policy and the statistics in the <code class="docutils literal notranslate"><span class="pre">policy_stochastic.out</span></code> and <code class="docutils literal notranslate"><span class="pre">stats_stochastic.json</span></code> files.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prealloc</span><span class="o">.</span><span class="n">d_nz</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">prealloc</span><span class="o">.</span><span class="n">o_nz</span> <span class="o">=</span> <span class="mi">3</span>
 
 <span class="n">P_mat_stochastic</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">createTransitionProbabilityTensor</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;prob_ex1_stochastic&quot;</span><span class="p">,</span>
-    <span class="n">numStates</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-    <span class="n">numActions</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">numStates</span><span class="o">=</span><span class="n">num_states</span><span class="p">,</span>
+    <span class="n">numActions</span><span class="o">=</span><span class="n">num_actions</span><span class="p">,</span>
     <span class="n">func</span><span class="o">=</span><span class="n">P_stochastic</span><span class="p">,</span>
-    <span class="n">preallocation</span><span class="o">=</span><span class="n">prealloc_stochastic</span>
+    <span class="n">preallocation</span><span class="o">=</span><span class="n">prealloc</span>
 <span class="p">)</span>
 
-<span class="n">r_mat</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">createStageCostMatrix</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;reward_ex1&quot;</span><span class="p">,</span>
-    <span class="n">numStates</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-    <span class="n">numActions</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-    <span class="n">func</span><span class="o">=</span><span class="n">r</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-<p>The functions defining the transition probabilities and stage costs / rewards will each be evaluated <span class="math notranslate nohighlight">\(n \times m\)</span> times in order to fill these matrices. This can be a time-consuming process why parallel execution as well as preallocation is recommended. Consider also using a JIT compiler like Numba to speed up the evaluation of these functions.</p>
-<p>Finally we can put the ingredients together and build an MDP object:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mdp</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">MDP</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
 <span class="n">mdp</span><span class="o">.</span><span class="n">setTransitionProbabilityTensor</span><span class="p">(</span><span class="n">P_mat_deterministic</span><span class="p">)</span>
-<span class="n">mdp</span><span class="o">.</span><span class="n">setStageCostMatrix</span><span class="p">(</span><span class="n">r_mat</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Next, we need to specify options for the solver. Two options are required for the solver to work: the discount factor <span class="math notranslate nohighlight">\(\gamma\)</span> and the optimization mode. The optimization mode can be either <code class="docutils literal notranslate"><span class="pre">MINCOST</span></code> or <code class="docutils literal notranslate"><span class="pre">MAXREWARD</span></code>. In this case, we defined the model as a reward maximization problem, so we set the optimization mode to <code class="docutils literal notranslate"><span class="pre">MAXREWARD</span></code>. The discount factor can be set to any value between 0 and 1. For this example, we set it to 0.99. See <a class="reference internal" href="options.html"><span class="doc">Madupite Options</span></a> for a list of all available options.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-mode&quot;</span><span class="p">,</span> <span class="s2">&quot;MAXREWARD&quot;</span><span class="p">)</span>
-<span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-discount_factor&quot;</span><span class="p">,</span> <span class="s2">&quot;0.99&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Finally, we can solve the MDP using the <code class="docutils literal notranslate"><span class="pre">solve</span></code> method:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mdp</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>We can re-use the same MDP object to solve the stochastic case as well. We only need to set the transition probability tensor to the stochastic one. In this case, we might also want to save the optimal policy to a file for later use:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mdp</span><span class="o">.</span><span class="n">setTransitionProbabilityTensor</span><span class="p">(</span><span class="n">P_mat_stochastic</span><span class="p">)</span>
-<span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-file_policy&quot;</span><span class="p">,</span> <span class="s2">&quot;ex1_policy.txt&quot;</span><span class="p">)</span>
+
+<span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-file_policy&quot;</span><span class="p">,</span> <span class="s2">&quot;policy_stochastic.out&quot;</span><span class="p">)</span>
+<span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-file_stats&quot;</span><span class="p">,</span> <span class="s2">&quot;statistics_stochastic.json&quot;</span><span class="p">)</span>
+
 <span class="n">mdp</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>In order to run the code, save it to a file, e.g. <code class="docutils literal notranslate"><span class="pre">ex1.py</span></code> and run it sequentially using <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">ex1.py</span></code> or in parallel using <code class="docutils literal notranslate"><span class="pre">mpirun</span> <span class="pre">-n</span> <span class="pre">N</span> <span class="pre">python</span> <span class="pre">ex1.py</span></code> where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of processes.</p>
+<p>To try the example yourself, see <code class="docutils literal notranslate"><span class="pre">examples/tutorial/ex1.py</span></code>. Run it using <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">ex1.py</span></code> or in parallel using <code class="docutils literal notranslate"><span class="pre">mpirun</span> <span class="pre">-n</span> <span class="pre">&lt;number_of_ranks&gt;</span> <span class="pre">python</span> <span class="pre">ex1.py</span></code> where <code class="docutils literal notranslate"><span class="pre">&lt;number_of_ranks&gt;</span></code> is the number of processes.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">examples/tutorial/ex2_data_generation.py</span></code> you can see how to generate the data for this example from a NumPy or SciPy array and save it in <code class="docutils literal notranslate"><span class="pre">.bin</span></code> files. In <code class="docutils literal notranslate"><span class="pre">examples/tutorial/ex2.py</span></code> you can see how to load the data from the <code class="docutils literal notranslate"><span class="pre">.bin</span></code> files and solve the MDP.</p>
 </section>
+<section id="inverted-pendulum">
+<h2>Inverted Pendulum<a class="headerlink" href="#inverted-pendulum" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">madupite</span></code> can also be used to create and solve MDPs from offline simulation data. In this example for instace we consider offline data collected by simulating an inverted pendulum, whose dynamic is described by the following equation:</p>
+<div class="math notranslate nohighlight">
+\begin{eqnarray}
+   \ddot{\theta}  + \frac{g}{\ell}\sin(\theta)  &amp; = \frac{F}{m \ell^2}\,,
+\end{eqnarray}</div><p>where <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(\ell\)</span> are the pendulum mass and length, respectively; <span class="math notranslate nohighlight">\(g\)</span> is the gravitational acceleration; <span class="math notranslate nohighlight">\(\theta\)</span> is the angular position of the pendulum, and <span class="math notranslate nohighlight">\(F\)</span> the torque that we apply on it.
+The dynamic is continuous in time and space, therefore we must first discretize it in order to be able to simulate it. In particular, we select 0.01 as time-step and we discretize the space in the ranges <span class="math notranslate nohighlight">\([-10;\,10]\)</span> and <span class="math notranslate nohighlight">\([0;\, 2 \pi]\)</span> for the angular acceleration and position, respectively, and <span class="math notranslate nohighlight">\([-3;\, 3]\)</span> for the action. The finer the discretization grid that we use and the more accurate will be the resulting approximate model, but it will also result into a bigger computational and memory load. <code class="docutils literal notranslate"><span class="pre">madupite</span></code> allows one to deploy a finer discretization by distributing the memory and computation across nodes of a computing cluster.
+For the simulation of the pendulum we used different discretization granularities and we collected the data into <cite>.bin</cite> files which you can download here <a class="reference download internal" download="" href="_downloads/71d06302156e5bfc15c2e61a9899e462/data.zip"><code class="xref download docutils literal notranslate"><span class="pre">data.zip</span> <span class="pre">(8.4</span> <span class="pre">MB)</span></code></a>.
+The goal is to find the values of torque that minimize at each time-step the following stage-cost:</p>
+<div class="math notranslate nohighlight">
+\begin{eqnarray}
+   g(\theta,\,\dot{\theta},\, F) = (\theta - \pi)^2 + \dot{\theta}^2 + 2 F^2\,.
+\end{eqnarray}</div><p>To fit into the problem setting, we also add a discount factor of 0.999, which approximates well-enough the undiscounted setting. In the following code snippet, we use <code class="docutils literal notranslate"><span class="pre">madupite</span></code> to build and solve the MDP associated to the simulation data that we collected from the inverted pendulum when different discretization granularities are used. The optimal policy, cost and statistics are saved into files.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">madupite</span> <span class="k">as</span> <span class="nn">md</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+
+    <span class="n">mdp</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">MDP</span><span class="p">()</span>
+
+    <span class="c1"># the first element in the tuple is the number of states, the second element is the number of actions</span>
+    <span class="n">dims_</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">121</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">441</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="p">(</span><span class="mi">1681</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="p">(</span><span class="mi">10201</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="p">(</span><span class="mi">22801</span><span class="p">,</span> <span class="mi">9</span><span class="p">)]</span>
+
+    <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">dims_</span><span class="p">:</span>
+
+        <span class="c1"># Load data from .bin files</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">Matrix</span><span class="o">.</span><span class="n">fromFile</span><span class="p">(</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;data/pend_g_</span><span class="si">{}</span><span class="s2">_</span><span class="si">{}</span><span class="s2">.bin&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dim</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+            <span class="n">category</span><span class="o">=</span><span class="n">md</span><span class="o">.</span><span class="n">MatrixCategory</span><span class="o">.</span><span class="n">Cost</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="n">md</span><span class="o">.</span><span class="n">MatrixType</span><span class="o">.</span><span class="n">Dense</span>
+        <span class="p">)</span>
+        <span class="n">P</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">Matrix</span><span class="o">.</span><span class="n">fromFile</span><span class="p">(</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;data/pend_P_</span><span class="si">{}</span><span class="s2">_</span><span class="si">{}</span><span class="s2">.bin&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dim</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+            <span class="n">category</span><span class="o">=</span><span class="n">md</span><span class="o">.</span><span class="n">MatrixCategory</span><span class="o">.</span><span class="n">Dynamics</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="n">md</span><span class="o">.</span><span class="n">MatrixType</span><span class="o">.</span><span class="n">Sparse</span>
+        <span class="p">)</span>
+
+        <span class="n">mdp</span><span class="o">.</span><span class="n">setStageCostMatrix</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+        <span class="n">mdp</span><span class="o">.</span><span class="n">setTransitionProbabilityTensor</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+
+        <span class="c1">#mandatory options to select</span>
+        <span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-mode&quot;</span><span class="p">,</span> <span class="s2">&quot;MINCOST&quot;</span><span class="p">)</span>
+        <span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-discount_factor&quot;</span><span class="p">,</span> <span class="s2">&quot;0.999&quot;</span><span class="p">)</span>
+
+        <span class="c1">#saving policy, cost and stats into files</span>
+        <span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-file_policy&quot;</span><span class="p">,</span> <span class="s2">&quot;policy_</span><span class="si">{}</span><span class="s2">_</span><span class="si">{}</span><span class="s2">.out&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dim</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-file_cost&quot;</span><span class="p">,</span> <span class="s2">&quot;cost_</span><span class="si">{}</span><span class="s2">_</span><span class="si">{}</span><span class="s2">.out&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dim</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-file_stats&quot;</span><span class="p">,</span> <span class="s2">&quot;stats_</span><span class="si">{}</span><span class="s2">_</span><span class="si">{}</span><span class="s2">.json&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dim</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+        <span class="n">mdp</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>In this video there is a nice graphic visualization of the results returned by <code class="docutils literal notranslate"><span class="pre">madupite</span></code> for different values of the discretization step.</p>
+<video autoplay="True" controls="True" height="500" loop="True" poster="_static/pendulum.png" preload="auto" width="900"><source src="_images/pendulum.mp4" type="video/mp4"></video></section>
 <section id="further-examples">
 <h2>Further examples<a class="headerlink" href="#further-examples" title="Link to this heading">#</a></h2>
-<p>Note that defining data from a function or loading from a file can be combined. See for example the maze example where the transition probabilities encode a deterministic movement in a 2D grid world and the maze logic is entirely defined in the cost function that is generated in a separate script. This can also apply to situations where e.g. costs come from measuring an experiment and are preproucessed in a separate application, independent of <code class="docutils literal notranslate"><span class="pre">madupite</span></code>.</p>
-<p>Standard control applications like the double integrator and inverted pendulum using an LQR controller are also provided in the examples folder. They can also serve as examples for how to use multi-dimensional state spaces and actions.</p>
+<p>Note that defining data from a function or loading from a file can be combined. See for example the maze example in the <code class="docutils literal notranslate"><span class="pre">examples</span></code> folder, where the transition probabilities encode a deterministic movement in a 2D grid world and the maze logic is entirely defined in the cost function which is instead loaded from a <cite>.bin</cite> file that is generated in a separate script. This can also apply to situations where, <em>e.g.</em>, the dynamics are generated from experimental data that are collected offline, while the stage-cost is defined by the user, or viceversa.
+More examples on the deployment of <code class="docutils literal notranslate"><span class="pre">madupite</span></code>, such as optimal control of a double integrator, an LQR controller and the derivation of optimal health policies for the infectious disease model, are also provided in the <code class="docutils literal notranslate"><span class="pre">examples</span></code> folder.</p>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="gargiani2024" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Gargiani2024<span class="fn-bracket">]</span></span>
+<p>Gargiani, M.; Sieber. R.; Balta, E.; Liao-McPherson, D.; Lygeros, J. <em>Inexact Policy Iteration Methods for Large-Scale Markov Decision Processes</em>. <a class="reference external" href="https://arxiv.org/abs/2404.06136">https://arxiv.org/abs/2404.06136</a>.</p>
+</div>
+</div>
 </section>
 </section>
 
@@ -567,8 +588,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1">Example 1</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#turning-it-into-code">Turning it into code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#toy-example">Toy-Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inverted-pendulum">Inverted Pendulum</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-examples">Further examples</a></li>
 </ul>
   </nav></div>

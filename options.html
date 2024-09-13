@@ -42,7 +42,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'options';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Benchmarks" href="benchmarks.html" />
+    <link rel="next" title="API Reference" href="apiref.html" />
     <link rel="prev" title="Examples" href="examples.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -170,13 +170,6 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="benchmarks.html">
-    Benchmarks
-  </a>
-</li>
-
-
-<li class="nav-item ">
   <a class="nav-link nav-internal" href="apiref.html">
     API Reference
   </a>
@@ -295,13 +288,6 @@ document.write(`
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="benchmarks.html">
-    Benchmarks
-  </a>
-</li>
-
-
-<li class="nav-item ">
   <a class="nav-link nav-internal" href="apiref.html">
     API Reference
   </a>
@@ -384,13 +370,14 @@ document.write(`
                   
   <section id="madupite-options">
 <h1>Madupite Options<a class="headerlink" href="#madupite-options" title="Link to this heading">#</a></h1>
-<p>Madupite options are specified using <code class="docutils literal notranslate"><span class="pre">MDP.setOption()</span></code>. This function accepts either two strings, or a single string for boolean options. Numeric values should be passed as strings, e.g., <code class="docutils literal notranslate"><span class="pre">&quot;20&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;0.1&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;1e-10&quot;</span></code>. Madupite options are built on top of PETSc options, allowing any PETSc option to be passed as well.</p>
-<section id="required-options">
-<h2>Required Options<a class="headerlink" href="#required-options" title="Link to this heading">#</a></h2>
+<p>Madupite comes with a lot of options that allow the user to customize her/his MDP as well as the method used to solve it. Despite the name, some of these options are actually mandatory as they are needed to correctly define the optimization problem. Others are only optional and serve the purpose of customization. Madupite options are built on top of PETSc options, allowing any PETSc option to be passed as well.</p>
+<section id="mandatory-options">
+<h2>Mandatory Options<a class="headerlink" href="#mandatory-options" title="Link to this heading">#</a></h2>
+<p>The options listed here are <strong>mandatory</strong>, meaning that we require the user to actively specify them.</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-mode">
 <span class="sig-name descname"><span class="pre">-mode</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;STRING&gt;</span></span><a class="headerlink" href="#cmdoption-mode" title="Link to this definition">#</a></dt>
-<dd><p>Specifies the optimization mode for the Markov Decision Process.</p>
+<dd><p>Specifies the optimization mode.</p>
 <p>Accepted values: <code class="docutils literal notranslate"><span class="pre">&quot;MAXREWARD&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;MINCOST&quot;</span></code></p>
 <p>This option determines whether the algorithm will maximize rewards or minimize costs.</p>
 </dd></dl>
@@ -398,14 +385,15 @@ document.write(`
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-discount_factor">
 <span class="sig-name descname"><span class="pre">-discount_factor</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;DOUBLE&gt;</span></span><a class="headerlink" href="#cmdoption-discount_factor" title="Link to this definition">#</a></dt>
-<dd><p>Sets the discount factor for future rewards or costs.</p>
+<dd><p>Sets the discount factor.</p>
 <p>Value range: <span class="math notranslate nohighlight">\((0, 1)\)</span></p>
 <p>The discount factor determines the present value of future rewards. A value closer to 1 gives more weight to future rewards, while a value closer to 0 emphasizes immediate rewards.</p>
 </dd></dl>
 
 </section>
-<section id="optional-options">
-<h2>Optional Options<a class="headerlink" href="#optional-options" title="Link to this heading">#</a></h2>
+<section id="facultative-options">
+<h2>Facultative Options<a class="headerlink" href="#facultative-options" title="Link to this heading">#</a></h2>
+<p>The options listed here are <strong>facultative</strong>. If the user does not actively specify these options, default values will be used.</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-max_iter_pi">
 <span class="sig-name descname"><span class="pre">-max_iter_pi</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;INT&gt;</span></span><a class="headerlink" href="#cmdoption-max_iter_pi" title="Link to this definition">#</a></dt>
@@ -419,7 +407,7 @@ document.write(`
 <span class="sig-name descname"><span class="pre">-max_iter_ksp</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;INT&gt;</span></span><a class="headerlink" href="#cmdoption-max_iter_ksp" title="Link to this definition">#</a></dt>
 <dd><p>Sets the maximum number of iterations for the Krylov subspace method.</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">1000</span></code></p>
-<p>This option limits the iterations in the approximate policy evaluation step. The method will terminate after this many iterations, even without convergence. Must be a positive integer.</p>
+<p>This option limits the iterations in the approximate policy evaluation step. The method will terminate after this many iterations, even if convergence has not been achieved. Must be a positive integer.</p>
 </dd></dl>
 
 <dl class="std option">
@@ -427,7 +415,7 @@ document.write(`
 <span class="sig-name descname"><span class="pre">-atol_pi</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;DOUBLE&gt;</span></span><a class="headerlink" href="#cmdoption-atol_pi" title="Link to this definition">#</a></dt>
 <dd><p>Defines the absolute tolerance for the inexact policy iteration algorithm.</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">1e-8</span></code></p>
-<p>The algorithm terminates if the difference between the Bellman residual infinity norm is smaller than this value. Must be a positive double.</p>
+<p>The algorithm terminates if the infinity-norm of the Bellman residual function is smaller than this value. Must be a positive double.</p>
 </dd></dl>
 
 <dl class="std option">
@@ -435,14 +423,14 @@ document.write(`
 <span class="sig-name descname"><span class="pre">-alpha</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;DOUBLE&gt;</span></span><a class="headerlink" href="#cmdoption-alpha" title="Link to this definition">#</a></dt>
 <dd><p>Sets the forcing sequence parameter for the approximate policy evaluation step.</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">1e-4</span></code></p>
-<p>This parameter influences the accuracy of the policy evaluation step. Must be a positive double.</p>
+<p>This parameter influences the accuracy of the policy evaluation step. In general, the smaller the value of this parameter and the more accurate is the cost returned by approximate policy evaluation step. Must be a positive double.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-file_stats">
 <span class="sig-name descname"><span class="pre">-file_stats</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;STRING&gt;</span></span><a class="headerlink" href="#cmdoption-file_stats" title="Link to this definition">#</a></dt>
 <dd><p>Specifies a file to write convergence and runtime information.</p>
-<p>This option enables writing detailed statistics about the algorithm’s performance, useful for plotting and benchmarking.</p>
+<p>This option enables writing detailed statistics about the algorithm’s performance, which can be used for plotting and benchmarking.</p>
 </dd></dl>
 
 <dl class="std option">
@@ -476,7 +464,21 @@ document.write(`
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-filename_prefix">
 <span class="sig-name descname"><span class="pre">-filename_prefix</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;STRING&gt;</span></span><a class="headerlink" href="#cmdoption-filename_prefix" title="Link to this definition">#</a></dt>
-<dd><p>Specify a file prefix that is added to all file names. Specifically useful to add the Slurm jobname in front.</p>
+<dd><p>Specify a file prefix that is added to all file names. It can for instance be used to add the job-ID when running benchmarks in a Slurm cluster.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-verbose">
+<span class="sig-name descname"><span class="pre">-verbose</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;BOOLEAN&gt;</span></span><a class="headerlink" href="#cmdoption-verbose" title="Link to this definition">#</a></dt>
+<dd><p>Enable console output of option values and algorithm progress.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">false</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-overwrite">
+<span class="sig-name descname"><span class="pre">-overwrite</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;BOOLEAN&gt;</span></span><a class="headerlink" href="#cmdoption-overwrite" title="Link to this definition">#</a></dt>
+<dd><p>Allow overwriting existing files. This might be useful while debugging to avoid creating new files for each run or to avoid e.g. adapting filenames in a plotting script.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">false</span></code></p>
 </dd></dl>
 
 </section>
@@ -495,48 +497,67 @@ document.write(`
 <span class="sig-name descname"><span class="pre">-pc_type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;STRING&gt;</span></span><a class="headerlink" href="#cmdoption-pc_type" title="Link to this definition">#</a></dt>
 <dd><p>Chooses the preconditioner to use before applying the inner solver.</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">&quot;none&quot;</span></code></p>
-<p>Only preconditioners that rely on the (transposed) matrix-vector product are supported. For the standard (exact) policy iteration algorithm, set this to “svd” (available only for sequential execution, not recommended for large-scale problems).</p>
+<p>Only preconditioners that rely on the (transposed) matrix-vector product are supported. For the standard (exact) policy iteration algorithm, set this to “svd” (available only for sequential execution, not recommended for large-scale problems) or “lu”.</p>
 <p>For a list of available preconditioners, see: <a class="reference external" href="https://petsc.org/release/manualpages/PC/PCType/">https://petsc.org/release/manualpages/PC/PCType/</a></p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-log_view">
-<span class="sig-name descname"><span class="pre">-log_view</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-log_view" title="Link to this definition">#</a></dt>
-<dd><p>Enables output of a detailed algorithm log to the console.</p>
-<p>This option is useful for debugging and benchmarking purposes.</p>
+<dt class="sig sig-object std" id="cmdoption-ksp_view">
+<span class="sig-name descname"><span class="pre">-ksp_view</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;BOOLEAN&gt;</span></span><a class="headerlink" href="#cmdoption-ksp_view" title="Link to this definition">#</a></dt>
+<dd><p>Prints information about the Krylov subspace method (inner solver) to the console.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">false</span></code></p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-pc_svd_monitor">
+<span class="sig-name descname"><span class="pre">-pc_svd_monitor</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;BOOLEAN&gt;</span></span><a class="headerlink" href="#cmdoption-pc_svd_monitor" title="Link to this definition">#</a></dt>
+<dd><p>When using SVD as preconditioner, this option outputs the condition number of the matrix <span class="math notranslate nohighlight">\(P^\pi\)</span> to the console at each outer iteration.</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">false</span></code></p>
 </dd></dl>
 
 </section>
-<section id="usage-example">
-<h2>Usage Example<a class="headerlink" href="#usage-example" title="Link to this heading">#</a></h2>
+<section id="how-to-correctly-set-the-options">
+<h2>How To Correctly Set the Options<a class="headerlink" href="#how-to-correctly-set-the-options" title="Link to this heading">#</a></h2>
+<p>There are different ways to set the options in Madupite. Since it is best explained with examples, down below we use the pendulum example to showcase the different ways that can be used to set the options in Madupite.</p>
 <p>Command line usage:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./pendulum<span class="w"> </span>-discount_factor<span class="w"> </span><span class="m">0</span>.999<span class="w"> </span>-mode<span class="w"> </span>MINCOST<span class="w"> </span>-max_iter_pi<span class="w"> </span><span class="m">500</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun<span class="w"> </span>-n<span class="w"> </span>&lt;number_of_ranks&gt;<span class="w"> </span>python<span class="w"> </span>pendulum.py<span class="w"> </span>-discount_factor<span class="w"> </span><span class="m">0</span>.999<span class="w"> </span>-mode<span class="w"> </span>MINCOST<span class="w"> </span>-max_iter_pi<span class="w"> </span><span class="m">500</span><span class="w"> </span>-verbose<span class="w"> </span>True
 </pre></div>
 </div>
-<p>Using options file:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./pendulum<span class="w"> </span>-options<span class="w"> </span>options_file
+<p>Using options in a <code class="docutils literal notranslate"><span class="pre">.txt</span></code> file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun<span class="w"> </span>-n<span class="w"> </span>&lt;number_of_ranks&gt;<span class="w"> </span>python<span class="w"> </span>pendulum.py<span class="w"> </span>-options<span class="w"> </span>&lt;filename&gt;.txt
 </pre></div>
 </div>
-<p>Where <cite>options_file</cite> contains:</p>
+<p>Where <code class="docutils literal notranslate"><span class="pre">&lt;filename&gt;.txt</span></code> contains:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>-discount_factor 0.999
 -mode MINCOST
 -max_iter_pi 500
+-verbose True
 </pre></div>
 </div>
+<p>You can use the same logics to set the options also when using <code class="docutils literal notranslate"><span class="pre">madupite</span></code> from C++ or when running in single-core.</p>
 <p>Hard-coded options:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mdp</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">MDP</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python</span>
+<span class="n">mdp</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">MDP</span><span class="p">()</span>
 <span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-mode&quot;</span><span class="p">,</span> <span class="s2">&quot;MINCOST&quot;</span><span class="p">)</span>
 <span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-discount_factor&quot;</span><span class="p">,</span> <span class="s2">&quot;0.999&quot;</span><span class="p">)</span>
+<span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-verbose&quot;</span><span class="p">,</span> <span class="s2">&quot;True&quot;</span><span class="p">)</span>
 <span class="c1"># or</span>
 <span class="n">mdp</span><span class="p">[</span><span class="s2">&quot;-mode&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;MINCOST&quot;</span>
 <span class="n">mdp</span><span class="p">[</span><span class="s2">&quot;-discount_factor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.999</span>
+<span class="n">mdp</span><span class="p">[</span><span class="s2">&quot;verbose&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
 </pre></div>
 </div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">MDP</span><span class="w"> </span><span class="n">mdp</span><span class="p">;</span>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// C++</span>
+<span class="n">MDP</span><span class="w"> </span><span class="n">mdp</span><span class="p">;</span>
 <span class="n">mdp</span><span class="p">.</span><span class="n">setOption</span><span class="p">(</span><span class="s">&quot;-discount_factor&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;0.999&quot;</span><span class="p">);</span>
 <span class="n">mdp</span><span class="p">.</span><span class="n">setOption</span><span class="p">(</span><span class="s">&quot;-mode&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;MINCOST&quot;</span><span class="p">);</span>
 <span class="n">mdp</span><span class="p">.</span><span class="n">setOption</span><span class="p">(</span><span class="s">&quot;-max_iter_pi&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;500&quot;</span><span class="p">);</span>
+<span class="n">mdp</span><span class="p">.</span><span class="n">setOption</span><span class="p">(</span><span class="s">&quot;-max_iter_pi&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;True&quot;</span><span class="p">);</span>
 </pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>As of <code class="docutils literal notranslate"><span class="pre">madupite</span></code> V1.0, <code class="docutils literal notranslate"><span class="pre">MDP::setOption()</span></code> uses a global options data base even though it is called on an instance of the MDP class. This means that <code class="docutils literal notranslate"><span class="pre">mdp1.setOption(&quot;-discount_factor&quot;,</span> <span class="pre">&quot;0.999&quot;)</span></code> will also set the discount factor for <code class="docutils literal notranslate"><span class="pre">mdp2</span></code>. This holds for both C++ and Python.</p>
 </div>
 <p>For more information on available KSP types and preconditioners, refer to the PETSc documentation:</p>
 <ul class="simple">
@@ -567,11 +588,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="benchmarks.html"
+       href="apiref.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Benchmarks</p>
+        <p class="prev-next-title">API Reference</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -593,10 +614,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-options">Required Options</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-options">Optional Options</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mandatory-options">Mandatory Options</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#facultative-options">Facultative Options</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-petsc-options">Useful PETSc Options</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage-example">Usage Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-correctly-set-the-options">How To Correctly Set the Options</a></li>
 </ul>
   </nav></div>
 
