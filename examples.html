@@ -459,7 +459,7 @@ Within the <code class="docutils literal notranslate"><span class="pre">main</sp
     <span class="n">preallocation</span><span class="o">=</span><span class="n">prealloc</span>
 <span class="p">)</span>
 
-<span class="n">mdp</span><span class="o">.</span><span class="n">setTransitionProbabilityTensor</span><span class="p">(</span><span class="n">P_mat_deterministic</span><span class="p">)</span>
+<span class="n">mdp</span><span class="o">.</span><span class="n">setTransitionProbabilityTensor</span><span class="p">(</span><span class="n">P_mat_stochastic</span><span class="p">)</span>
 
 <span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-file_policy&quot;</span><span class="p">,</span> <span class="s2">&quot;policy_stochastic.out&quot;</span><span class="p">)</span>
 <span class="n">mdp</span><span class="o">.</span><span class="n">setOption</span><span class="p">(</span><span class="s2">&quot;-file_stats&quot;</span><span class="p">,</span> <span class="s2">&quot;statistics_stochastic.json&quot;</span><span class="p">)</span>
@@ -472,7 +472,7 @@ Within the <code class="docutils literal notranslate"><span class="pre">main</sp
 </section>
 <section id="inverted-pendulum">
 <h2>Inverted Pendulum<a class="headerlink" href="#inverted-pendulum" title="Link to this heading">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">madupite</span></code> can also be used to create and solve MDPs from offline simulation data. In this example for instace we consider offline data collected by simulating an inverted pendulum, whose dynamic is described by the following equation:</p>
+<p><code class="docutils literal notranslate"><span class="pre">madupite</span></code> can also be used to create and solve MDPs from offline simulation data. In this example for instance we consider offline data collected by simulating an inverted pendulum, whose dynamic is described by the following equation:</p>
 <div class="math notranslate nohighlight">
 \begin{eqnarray}
    \ddot{\theta}  + \frac{g}{\ell}\sin(\theta)  &amp; = \frac{F}{m \ell^2}\,,
