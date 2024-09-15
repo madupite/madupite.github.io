@@ -499,12 +499,12 @@ as follows:</p>
 <p>Where the submatrices A, B, C are owned by rank0, D, E, F are
 owned by rank1, G, H, I are owned by rank2.</p>
 <p>The DIAGONAL submatrices corresponding to rank0, rank1, rank2 are
-submatrices [A], [E], [I] respectively. The OFF-DIAGONAL submatrices
-corresponding to rank0, rank1, rank2 are [BC], [DF], [GH] respectively.</p>
+submatrices [A], [E], [I], respectively. The OFF-DIAGONAL submatrices
+corresponding to rank0, rank1, rank2 are [BC], [DF], [GH], respectively.</p>
 <p>When <code class="docutils literal notranslate"><span class="pre">d_nz</span></code>, <code class="docutils literal notranslate"><span class="pre">o_nz</span></code> parameters are specified, <code class="docutils literal notranslate"><span class="pre">d_nz</span></code> storage elements are
 allocated for every row of the local diagonal submatrix, and <code class="docutils literal notranslate"><span class="pre">o_nz</span></code>
 storage locations are allocated for every row of the OFF-DIAGONAL submatrix.
-Typically one chooses <code class="docutils literal notranslate"><span class="pre">d_nz</span></code> and <code class="docutils literal notranslate"><span class="pre">o_nz</span></code> as the max nonzeros per local
+Typically one chooses <code class="docutils literal notranslate"><span class="pre">d_nz</span></code> and <code class="docutils literal notranslate"><span class="pre">o_nz</span></code> as the max non-zeros per local
 rows for each of the local DIAGONAL, and the OFF-DIAGONAL submatrices.
 In this case, the values of <code class="docutils literal notranslate"><span class="pre">d_nz</span></code>, <code class="docutils literal notranslate"><span class="pre">o_nz</span></code> are:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rank0</span>  <span class="n">d_nz</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">o_nz</span> <span class="o">=</span> <span class="mi">2</span>
@@ -563,6 +563,10 @@ In the above case the values for <code class="docutils literal notranslate"><spa
     <span class="n">preallocation</span><span class="o">=</span><span class="n">pc2</span>
 <span class="p">)</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Using the preallocation greatly improves performance. At the same time, it can be quite cumbersome to compute these parameters for larger settings. We suggest to use the parameters <code class="docutils literal notranslate"><span class="pre">d_nz</span></code> and <code class="docutils literal notranslate"><span class="pre">o_nz</span></code> and set their values to the maximum number of non-zero entries per-row of the full-matrix.</p>
 </div>
 </section>
 <section id="data-format">
