@@ -420,7 +420,7 @@ document.write(`
 </pre></div>
 </div>
 <p>Load the necessary software modules:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">./</span><span class="n">load</span><span class="o">-</span><span class="n">euler</span><span class="o">-</span><span class="n">modules</span><span class="o">.</span><span class="n">sh</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">./</span><span class="n">examples</span><span class="o">/</span><span class="n">euler</span><span class="o">/</span><span class="n">euler</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">modules</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
 </div>
 <p>Then, install the Python package using pip:</p>
@@ -430,13 +430,13 @@ document.write(`
 <p><strong>Jupyter Notebook:</strong></p>
 <p>If you want to use <code class="docutils literal notranslate"><span class="pre">madupite</span></code> with  <cite>JupyterHub on Euler</cite> you need to install the python package as shown above. After that, copy the module load script to Jupyter.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">~/.</span><span class="n">config</span><span class="o">/</span><span class="n">euler</span><span class="o">/</span><span class="n">jupyterhub</span><span class="o">/</span><span class="n">jupyterlabrc</span>
-<span class="n">cp</span> <span class="o">~/</span><span class="n">madupite</span><span class="o">/</span><span class="n">load</span><span class="o">-</span><span class="n">euler</span><span class="o">-</span><span class="n">modules</span><span class="o">.</span><span class="n">sh</span> <span class="o">~/.</span><span class="n">config</span><span class="o">/</span><span class="n">euler</span><span class="o">/</span><span class="n">jupyterhub</span><span class="o">/</span><span class="n">jupyterlabrc</span>
+<span class="n">cp</span> <span class="o">~/</span><span class="n">madupite</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">euler</span><span class="o">/</span><span class="n">euler</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">modules</span><span class="o">.</span><span class="n">sh</span> <span class="o">~/.</span><span class="n">config</span><span class="o">/</span><span class="n">euler</span><span class="o">/</span><span class="n">jupyterhub</span><span class="o">/</span><span class="n">jupyterlabrc</span>
 </pre></div>
 </div>
 <p>Now, you can leave the login node and go to <a class="reference external" href="https://jupyter.euler.hpc.ethz.ch/">JupyterHub on Euler</a>.</p>
 <p><strong>C++ Version:</strong></p>
 <p>To build the C++ project on the Euler cluster, load the necessary software modules:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">./</span><span class="n">load</span><span class="o">-</span><span class="n">euler</span><span class="o">-</span><span class="n">modules</span><span class="o">.</span><span class="n">sh</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">./</span><span class="n">examples</span><span class="o">/</span><span class="n">euler</span><span class="o">/</span><span class="n">euler</span><span class="o">-</span><span class="n">load</span><span class="o">-</span><span class="n">modules</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
 </div>
 <p>Then, follow the same steps as for the general C++ installation:</p>
@@ -446,7 +446,7 @@ document.write(`
 <span class="n">make</span>
 </pre></div>
 </div>
-<p>The repository contains an example launch file <cite>euler-launch.sh</cite> to run the executables on the Euler cluster.</p>
+<p>The repository contains an example launch file <cite>examples/euler/euler-launch.sh</cite> to run the executables on the Euler cluster.</p>
 </section>
 </section>
 
