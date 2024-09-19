@@ -42,7 +42,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'examples';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Madupite Options" href="options.html" />
+    <link rel="next" title="Algorithm" href="algorithm.html" />
     <link rel="prev" title="Tutorials" href="tutorial.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -158,6 +158,13 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="#">
     Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="algorithm.html">
+    Algorithm
   </a>
 </li>
 
@@ -281,6 +288,13 @@ document.write(`
 
 
 <li class="nav-item ">
+  <a class="nav-link nav-internal" href="algorithm.html">
+    Algorithm
+  </a>
+</li>
+
+
+<li class="nav-item ">
   <a class="nav-link nav-internal" href="options.html">
     Options
   </a>
@@ -379,7 +393,7 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(g : \mathcal{S} \times \mathcal{A} \to \mathbb{R}\)</span> is the stage cost function (or reward in an alternative but equivalent formulation),</p></li>
 <li><p><span class="math notranslate nohighlight">\(\gamma \in (0, 1)\)</span> is the discount factor.</p></li>
 </ul>
-<p>Given an MDP, <code class="docutils literal notranslate"><span class="pre">madupite</span></code> will compute which actions should be played on the system such that the cumulative discounted cost (reward) over the infinite-horizon is minimized (maximized). You can find more details on the mathematical formulation of the problem setting in [Gargiani2024].</p>
+<p>Given an MDP, <code class="docutils literal notranslate"><span class="pre">madupite</span></code> will compute which actions should be played on the system such that the cumulative discounted cost (reward) over the infinite-horizon is minimized (maximized). You can find more details on the mathematical formulation of the problem setting in <a class="reference internal" href="#gargiani2024" id="id1"><span>[Gargiani2024]</span></a>.</p>
 <section id="toy-example">
 <h2>Toy-Example<a class="headerlink" href="#toy-example" title="Link to this heading">#</a></h2>
 <p>We start with a simple example.
@@ -535,7 +549,7 @@ More examples on the deployment of <code class="docutils literal notranslate"><s
 <p class="rubric">References</p>
 <div role="list" class="citation-list">
 <div class="citation" id="gargiani2024" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>Gargiani2024<span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">Gargiani2024</a><span class="fn-bracket">]</span></span>
 <p>Gargiani, M.; Sieber. R.; Balta, E.; Liao-McPherson, D.; Lygeros, J. <em>Inexact Policy Iteration Methods for Large-Scale Markov Decision Processes</em>. <a class="reference external" href="https://arxiv.org/abs/2404.06136">https://arxiv.org/abs/2404.06136</a>.</p>
 </div>
 </div>
@@ -562,11 +576,11 @@ More examples on the deployment of <code class="docutils literal notranslate"><s
       </div>
     </a>
     <a class="right-next"
-       href="options.html"
+       href="algorithm.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Madupite Options</p>
+        <p class="prev-next-title">Algorithm</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
